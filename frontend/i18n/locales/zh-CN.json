@@ -1,0 +1,127 @@
+{
+  "nav": {
+    "brand": "软云软件库",
+    "home": "首页",
+    "allSoftware": "全部软件",
+    "login": "登录",
+    "admin": "管理后台"
+  },
+  "home": {
+    "title": "云端软件下载站",
+    "subtitle": "类似华军软件园的软件下载站，软件真实文件托管在 OpenList 网盘，通过分享链接下载。",
+    "searchPlaceholder": "搜索软件名称或简介...",
+    "searchButton": "搜索",
+    "loading": "加载中...",
+    "loadError": "加载失败，请稍后再试。",
+    "empty": "暂无软件。",
+    "hotDownloads": "最近热门下载",
+    "hotSuffix": "次下载"
+  },
+  "admin": {
+    "dashboard": "管理后台",
+    "menu": {
+      "software": "软件管理",
+      "storage": "存储后端管理",
+      "submissions": "用户投稿审核"
+    },
+    "softwareList": {
+      "title": "软件管理",
+      "searchPlaceholder": "按名称或 slug 搜索...",
+      "search": "搜索",
+      "table": {
+        "id": "ID",
+        "name": "名称",
+        "slug": "Slug",
+        "version": "版本",
+        "status": "状态",
+        "statusDeleted": "已删除",
+        "statusPublished": "已发布",
+        "statusDraft": "草稿"
+      },
+      "loading": "加载中...",
+      "loadError": "加载失败，请检查 ADMIN_TOKEN 配置。"
+    },
+    "softwareDetail": {
+      "loading": "加载中...",
+      "loadError": "加载失败，请检查 ADMIN_TOKEN 配置。",
+      "notFound": "未找到该软件。",
+      "filesTitle": "文件列表",
+      "sourcesTitle": "更新源",
+      "files": {
+        "id": "ID",
+        "label": "标签",
+        "backend": "后端",
+        "path": "路径",
+        "primary": "主文件",
+        "yes": "是",
+        "no": "否"
+      },
+      "sources": {
+        "id": "ID",
+        "type": "类型",
+        "enabled": "启用",
+        "lastChecked": "最近检查",
+        "lastError": "最后错误"
+      },
+      "note": "注：当前后台页面只提供只读视图，方便检查存储后端与自动升级配置；后续可以在此基础上补充编辑表单。"
+    },
+    "storage": {
+      "title": "存储后端管理",
+      "loading": "加载中...",
+      "loadError": "加载失败，请检查 ADMIN_TOKEN 配置。",
+      "table": {
+        "id": "ID",
+        "name": "名称",
+        "type": "类型",
+        "code": "代号",
+        "enabled": "启用",
+        "yes": "是",
+        "no": "否"
+      }
+    },
+    "submissions": {
+      "title": "用户投稿审核",
+      "statusLabel": "状态：",
+      "status": {
+        "pending": "待审核",
+        "approved": "已通过",
+        "rejected": "已驳回"
+      },
+      "loading": "加载中...",
+      "loadError": "加载失败，请检查 ADMIN_TOKEN 配置。",
+      "table": {
+        "id": "ID",
+        "user": "用户",
+        "title": "标题",
+        "status": "状态",
+        "createdAt": "创建时间"
+      }
+    }
+  },
+  "auth": {
+    "login": {
+      "title": "登录",
+      "email": "邮箱",
+      "password": "密码",
+      "submit": "登录",
+      "submitting": "登录中...",
+      "error": "登录失败，请检查邮箱和密码。",
+      "noAccount": "还没有账号？",
+      "toRegister": "去注册"
+    },
+    "register": {
+      "title": "注册",
+      "email": "邮箱",
+      "nickname": "昵称（可选）",
+      "password": "密码",
+      "submit": "注册",
+      "submitting": "注册中...",
+      "error": "注册失败，邮箱可能已存在。",
+      "invalidEmail": "请输入合法的邮箱地址。",
+      "weakPassword": "密码至少 8 位，并包含字母和数字。",
+      "hasAccount": "已有账号？",
+      "toLogin": "去登录"
+    }
+  }
+}
+

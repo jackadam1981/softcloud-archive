@@ -1,0 +1,10 @@
+# 忽略所有 node_modules 目录（包括子项目）
+node_modules/
+**/node_modules/
+
+# 常见编辑器/系统文件（顺便一起忽略）
+.DS_Store
+Thumbs.db
+.idea/
+.vscode/
+

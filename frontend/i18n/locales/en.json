@@ -1,0 +1,127 @@
+{
+  "nav": {
+    "brand": "SoftCloud Archive",
+    "home": "Home",
+    "allSoftware": "All Software",
+    "login": "Login",
+    "admin": "Admin"
+  },
+  "home": {
+    "title": "Cloud Software Archive",
+    "subtitle": "A software download site similar to Huajun, with real binaries hosted on OpenList drives via share links.",
+    "searchPlaceholder": "Search by name or description...",
+    "searchButton": "Search",
+    "loading": "Loading...",
+    "loadError": "Failed to load, please retry later.",
+    "empty": "No software yet.",
+    "hotDownloads": "Trending Downloads",
+    "hotSuffix": "downloads"
+  },
+  "admin": {
+    "dashboard": "Admin Dashboard",
+    "menu": {
+      "software": "Software Management",
+      "storage": "Storage Backends",
+      "submissions": "Submissions Review"
+    },
+    "softwareList": {
+      "title": "Software Management",
+      "searchPlaceholder": "Search by name or slug...",
+      "search": "Search",
+      "table": {
+        "id": "ID",
+        "name": "Name",
+        "slug": "Slug",
+        "version": "Version",
+        "status": "Status",
+        "statusDeleted": "Deleted",
+        "statusPublished": "Published",
+        "statusDraft": "Draft"
+      },
+      "loading": "Loading...",
+      "loadError": "Failed to load, please check ADMIN_TOKEN."
+    },
+    "softwareDetail": {
+      "loading": "Loading...",
+      "loadError": "Failed to load, please check ADMIN_TOKEN.",
+      "notFound": "Software not found.",
+      "filesTitle": "Files",
+      "sourcesTitle": "Update Sources",
+      "files": {
+        "id": "ID",
+        "label": "Label",
+        "backend": "Backend",
+        "path": "Path",
+        "primary": "Primary",
+        "yes": "Yes",
+        "no": "No"
+      },
+      "sources": {
+        "id": "ID",
+        "type": "Type",
+        "enabled": "Enabled",
+        "lastChecked": "Last Checked",
+        "lastError": "Last Error"
+      },
+      "note": "Note: this admin page is read-only for now, used to inspect storage backends and auto-update sources."
+    },
+    "storage": {
+      "title": "Storage Backends",
+      "loading": "Loading...",
+      "loadError": "Failed to load, please check ADMIN_TOKEN.",
+      "table": {
+        "id": "ID",
+        "name": "Name",
+        "type": "Type",
+        "code": "Code",
+        "enabled": "Enabled",
+        "yes": "Yes",
+        "no": "No"
+      }
+    },
+    "submissions": {
+      "title": "User Submissions Review",
+      "statusLabel": "Status:",
+      "status": {
+        "pending": "Pending",
+        "approved": "Approved",
+        "rejected": "Rejected"
+      },
+      "loading": "Loading...",
+      "loadError": "Failed to load, please check ADMIN_TOKEN.",
+      "table": {
+        "id": "ID",
+        "user": "User",
+        "title": "Title",
+        "status": "Status",
+        "createdAt": "Created At"
+      }
+    }
+  },
+  "auth": {
+    "login": {
+      "title": "Login",
+      "email": "Email",
+      "password": "Password",
+      "submit": "Login",
+      "submitting": "Logging in...",
+      "error": "Login failed, please check email and password.",
+      "noAccount": "Don't have an account?",
+      "toRegister": "Register"
+    },
+    "register": {
+      "title": "Register",
+      "email": "Email",
+      "nickname": "Nickname (optional)",
+      "password": "Password",
+      "submit": "Register",
+      "submitting": "Registering...",
+      "error": "Registration failed, email may already exist.",
+      "invalidEmail": "Please enter a valid email address.",
+      "weakPassword": "Password must be at least 8 characters and contain both letters and numbers.",
+      "hasAccount": "Already have an account?",
+      "toLogin": "Login"
+    }
+  }
+}
+

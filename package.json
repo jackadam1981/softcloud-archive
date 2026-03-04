@@ -1,0 +1,14 @@
+{
+  "scripts": {
+    "install": "powershell -Command \"cd frontend; npm install --verbose; cd ..\\\\workers; npm install --verbose\"",
+    "dev": "concurrently \"npm --prefix frontend run dev\" \"npm --prefix workers run dev\"",
+    "db:generate": "npm --prefix workers run db:generate",
+    "db:push:remote": "npm --prefix workers run db:push",
+    "db:push:local": "cd workers && npx wrangler d1 execute softcloud-db --local --file ..\\db\\schema.sql",
+    "db:push": "npm run db:push:remote",
+    "db:studio": "npm --prefix workers run db:studio"
+  },
+  "devDependencies": {
+    "concurrently": "^9.2.1"
+  }
+}

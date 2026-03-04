@@ -1,0 +1,2 @@
+declare module "itty-router";
+

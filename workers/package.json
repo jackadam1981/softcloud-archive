@@ -1,0 +1,25 @@
+{
+  "name": "softcloud-api",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "dev": "wrangler dev",
+    "deploy": "wrangler deploy",
+    "types": "wrangler types",
+    "db:generate": "drizzle-kit generate",
+    "db:push": "drizzle-kit push",
+    "db:studio": "drizzle-kit studio"
+  },
+  "devDependencies": {
+    "@cloudflare/workers-types": "^4.20241106.0",
+    "drizzle-kit": "^0.26.0",
+    "typescript": "^5.6.0",
+    "wrangler": "^4.70.0"
+  },
+  "dependencies": {
+    "bcryptjs": "^2.4.3",
+    "drizzle-orm": "^0.38.0",
+    "itty-router": "^4.0.28",
+    "jsonwebtoken": "^9.0.2"
+  }
+}
