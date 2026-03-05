@@ -10,20 +10,31 @@
 
 推荐用 [Render](https://render.com) 免费容器部署。
 
-**一键部署到 Render**（使用 [OpenList 官方仓库](https://github.com/OpenListTeam/OpenList)）：
+**说明**：OpenList 官方仓库 [OpenListTeam/OpenList](https://github.com/OpenListTeam/OpenList) 未包含 `render.yaml`，直接点「Deploy to Render」并指向该仓库时不会自动建服务，需在控制台选「从镜像部署」或使用下方模板。完整步骤与版本差异见 [linux.do：render部署最新版openlist教程](https://linux.do/t/topic/1031701)。
 
-[![Deploy to Render](https://render.com/images/deploy-to-render-button.svg)](https://render.com/deploy?repo=https://github.com/OpenListTeam/OpenList)
+**版本与镜像**：OpenList **v4.1.0 及以后**在 Render 上使用官方镜像时，可能出现「当前用户没有 /opt/openlist/data 的写和/或执行权限」。教程评论区推荐使用 PaaS 友好镜像 **`ghcr.io/lsc0223/openlist-for-paas:main`**，本模板已采用该镜像。v4.1.0 以前可用官方镜像并配置 `DB_*`、`UMASK=022` 等环境变量；v4.1.0+ 已移除 `PUID`/`PGID`，无需再设。
 
-点击按钮后按提示登录 Render、确认或填写服务配置即可创建 OpenList 实例。若 OpenList 仓库提供 `render.yaml`，Render 会按配置创建服务；否则在 Render 控制台选择「Web Service」并连接该仓库，选择 Docker 或对应运行方式即可。
+#### 方式 A：一键部署（直接使用本仓库）
 
-**手动步骤**（与按钮等效）：
+本仓库**根目录**已包含 `render.yaml`，无需复制到新仓库：
 
-1. 将 OpenList 项目推到 Git 仓库（或 Fork [OpenListTeam/OpenList](https://github.com/OpenListTeam/OpenList)）。
-2. Render 创建 Web Service，连接该仓库，选择 Docker 或对应运行方式。
-3. 绑定自定义域名（如 `pan.example.com`），为管理账号设置强密码。
-4. 连接 GitHub 后，每次 push 自动重新部署。
+1. 打开：`https://render.com/deploy?repo=https://github.com/jackadam1981/softcloud-archive`（或从 README 点击 Deploy to Render 按钮）。
+2. 按提示登录 Render 并确认配置，即可创建 OpenList 服务（镜像 `ghcr.io/lsc0223/openlist-for-paas:main`）。
 
-其他方式：1Panel 一键部署、Docker 自建、官方脚本/手动安装亦可。
+模板文件与说明见 [deploy/openlist-render/](../deploy/openlist-render/)。
+
+#### 方式 B：在 Render 控制台手动部署
+
+1. 登录 [Render Dashboard](https://dashboard.render.com/) → **New** → **Web Service**。
+2. 选择 **Deploy an existing image from a registry**（从镜像部署）。
+3. **Image URL** 填：`ghcr.io/lsc0223/openlist-for-paas:main`（推荐，避免 v4.1.0+ 权限问题）；或 `openlistteam/openlist:latest-lite`（v4.1.0+ 在 Render 上可能需自建镜像，见 [教程](https://linux.do/t/topic/1031701)）。
+4. **Instance Type** 选 Starter（免费档约 15 分钟无请求后休眠）。
+5. 添加 **Disk**：Mount Path 填 `/opt/openlist/data`，容量至少 1GB，用于持久化数据。
+6. **环境变量**：Render 会注入 `PORT`；若使用外置 Postgres/MySQL，按 [教程](https://linux.do/t/topic/1031701) 设置 `DB_TYPE`、`DB_HOST`、`DB_NAME`、`DB_USER`、`DB_PASS`、`DB_PORT`、`DB_SSL_MODE`、`DB_TABLE_PREFIX`、`UMASK=022`。
+7. 创建后访问 `https://你的服务名.onrender.com`，按首次向导设置管理员密码、挂载网盘等。
+8. 可选：绑定自定义域名（如 `pan.example.com`），在 Render 服务设置中添加 Custom Domain。
+
+其他方式：1Panel 一键部署、Docker 自建、[OpenList 官方 PaaS 文档](https://doc.openlist.team/guide/installation/paas) 等亦可。
 
 ### 2. 挂载网盘与开启 WebDAV
 

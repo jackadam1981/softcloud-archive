@@ -1,0 +1,19 @@
+# OpenList 在 Render 上的 Blueprint（与仓库根目录 render.yaml 内容一致，便于在子目录维护与参考）
+# 一键部署请直接用本仓库：https://render.com/deploy?repo=https://github.com/jackadam1981/softcloud-archive
+
+# 使用 PaaS 友好镜像，避免 v4.1.0+ 在 Render 上 /opt/openlist/data 权限问题（见 linux.do 教程评论区）
+services:
+  - type: web
+    runtime: image
+    name: openlist
+    image:
+      url: ghcr.io/lsc0223/openlist-for-paas:main
+    plan: starter
+    envVars:
+      - key: PORT
+        value: "5244"
+    disk:
+      name: openlist-data
+      mountPath: /opt/openlist/data
+      sizeGB: 1
+    healthCheckPath: /

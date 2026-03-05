@@ -28,9 +28,14 @@
 
 ### ① 部署 OpenList 到 Render（网盘）
 
-[![Deploy to Render](https://render.com/images/deploy-to-render-button.svg)](https://render.com/deploy?repo=https://github.com/OpenListTeam/OpenList)
+本仓库根目录已包含 `render.yaml`，可直接一键部署（使用 PaaS 友好镜像 `ghcr.io/lsc0223/openlist-for-paas:main`，避免 v4.1.0+ 在 Render 上 data 目录权限问题）。步骤与 [linux.do 教程](https://linux.do/t/topic/1031701) 一致。
 
-点击后按提示登录 Render 即可部署 **OpenList**（挂载网盘、WebDAV、分享链接）。部署完成后记下 OpenList 地址，供下一步配置 Workers 使用。详见 [08-OpenList集成](docs/08-OpenList集成.md)。
+- **一键部署**：点击下方按钮，或访问 `https://render.com/deploy?repo=https://github.com/jackadam1981/softcloud-archive`，按提示登录 Render 即可创建 OpenList 服务。
+- **手动部署**：Render → New → Web Service → 选择「从镜像部署」→ 镜像填 `ghcr.io/lsc0223/openlist-for-paas:main`，端口 5244，挂载磁盘 `/opt/openlist/data`。详见 [08-OpenList集成](docs/08-OpenList集成.md)。
+
+[![Deploy to Render](https://render.com/images/deploy-to-render-button.svg)](https://render.com/deploy?repo=https://github.com/jackadam1981/softcloud-archive)
+
+部署完成后记下 OpenList 地址，供下一步配置 Workers 的 `OPENLIST_BASE_URL`。详见 [08-OpenList集成](docs/08-OpenList集成.md)。
 
 ### ② 部署到 Cloudflare（Workers API + D1）
 

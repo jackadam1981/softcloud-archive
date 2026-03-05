@@ -1,0 +1,20 @@
+# OpenList 在 Render 上的 Blueprint（一键部署用）
+# 直接访问 https://render.com/deploy?repo=https://github.com/jackadam1981/softcloud-archive 即可部署 OpenList
+# 参考：https://linux.do/t/topic/1031701（render部署最新版openlist教程）、deploy/openlist-render/README.md
+
+# 使用 PaaS 友好镜像，避免 v4.1.0+ 在 Render 上 /opt/openlist/data 权限问题（见 linux.do 教程评论区）
+services:
+  - type: web
+    runtime: image
+    name: openlist
+    image:
+      url: ghcr.io/lsc0223/openlist-for-paas:main
+    plan: starter
+    envVars:
+      - key: PORT
+        value: "5244"
+    disk:
+      name: openlist-data
+      mountPath: /opt/openlist/data
+      sizeGB: 1
+    healthCheckPath: /
