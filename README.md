@@ -28,10 +28,10 @@
 
 ### ① 部署 OpenList（网盘）
 
-**推荐 Railway**：一键部署、新用户 $5 试用且**无需绑卡**，比 Render 省事。
+**推荐 Railway**：一键部署、新用户 $5 试用且**无需绑卡**。Railway 模板为社区项目 [tianheg/openlist-on-railway](https://github.com/tianheg/openlist-on-railway)，非 OpenList 官方仓库；首次访问按页面设置向导创建管理员即可。若需原版 OpenList，可用下方 Render 或 Docker。
 
-- **一键部署（Railway）**：点击下方按钮，或访问 [railway.com/deploy/openlist](https://railway.com/deploy/openlist)，按提示登录即可创建 OpenList。部署后在 Railway 日志中查看初始管理员密码。
-- **备选 Render**：若使用 Render，本仓库根目录含 [render.yaml](render.yaml)，访问 `https://render.com/deploy?repo=https://github.com/jackadam1981/softcloud-archive` 即可（Render 可能需绑卡）。详见 [08-OpenList集成](docs/08-OpenList集成.md)。
+- **一键部署（Railway，社区模板）**：点击下方按钮或访问 [railway.com/deploy/openlist](https://railway.com/deploy/openlist)。
+- **备选 Render（本仓库 Blueprint，贴近原版）**：本仓库根目录含 [render.yaml](render.yaml)，访问 `https://render.com/deploy?repo=https://github.com/jackadam1981/softcloud-archive`（Render 可能需绑卡）。详见 [08-OpenList集成](docs/08-OpenList集成.md)。
 
 [![Deploy on Railway](https://railway.com/button.svg)](https://railway.com/deploy/openlist)
 

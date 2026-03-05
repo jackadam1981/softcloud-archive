@@ -8,14 +8,14 @@
 
 ### 1. 部署 OpenList
 
-**推荐 [Railway](https://railway.com)**：一键部署、新用户 $5 试用且**无需绑卡**；[OpenList 官方 Railway 模板](https://railway.com/deploy/openlist) 已配置好存储与启动。备选 [Render](https://render.com)（可能需绑卡）见下方方式 B。
+**推荐 [Railway](https://railway.com)**：一键部署、新用户 $5 试用且**无需绑卡**。注意：Railway 上的 [openlist-on-railway](https://railway.com/deploy/openlist) 为**社区模板**（[tianheg/openlist-on-railway](https://github.com/tianheg/openlist-on-railway)），基于 OpenList 镜像封装，并非 [OpenList 官方仓库](https://github.com/OpenListTeam/OpenList) 直接部署。若需原版 OpenList，请用方式 B（Render）或**方式 C（官方镜像/从源码）**。备选 [Render](https://render.com)（可能需绑卡）见方式 B。
 
-#### 方式 A：一键部署到 Railway（推荐）
+#### 方式 A：一键部署到 Railway（社区模板，推荐）
 
-1. 打开 [railway.com/deploy/openlist](https://railway.com/deploy/openlist)（或 README 中的「Deploy on Railway」按钮）。
+1. 打开 [railway.com/deploy/openlist](https://railway.com/deploy/openlist)（或 README 中的「Deploy on Railway」按钮），部署的是社区模板 tianheg/openlist-on-railway。
 2. 按提示登录 Railway（可用 GitHub），确认部署。
-3. 部署完成后在 Railway 项目 → 该服务 → **Deploy Logs** 中查找初始管理员密码（形如 `Successfully created the admin user and the initial password is: xxx`），**请立即修改并妥善保存**。
-4. 在 Railway 服务设置中为服务生成公网域名，或绑定自定义域名，得到 OpenList 访问地址。
+3. 部署完成后在 Railway 服务设置中为服务**生成公网域名**（Settings → Networking → Generate Domain），得到 OpenList 访问地址（如 `https://xxx.up.railway.app`）。
+4. **首次登录**：Railway 的 OpenList 模板（openlist-on-railway）**不会**在 Build Logs 或 Deploy Logs 中输出密码。请直接浏览器访问上一步的 OpenList 地址，在打开的**首次设置向导**中创建管理员账号并设置密码即可。
 
 #### 方式 B：部署到 Render（备选，可能需绑卡）
 
@@ -24,7 +24,28 @@
 1. 打开：`https://render.com/deploy?repo=https://github.com/jackadam1981/softcloud-archive`，按提示登录并确认配置即可创建 OpenList 服务（镜像 `ghcr.io/lsc0223/openlist-for-paas:main`）。
 2. 或手动：Render Dashboard → New → Web Service → 从镜像部署 → Image URL 填 `ghcr.io/lsc0223/openlist-for-paas:main`，端口 5244，挂载 Disk `/opt/openlist/data`（至少 1GB）。详见 [linux.do Render 教程](https://linux.do/t/topic/1031701)、[deploy/openlist-render/](../deploy/openlist-render/)。
 
-其他方式：1Panel 一键部署、Docker 自建、[OpenList 官方 PaaS 文档](https://doc.openlist.team/guide/installation/paas) 等亦可。
+#### 方式 C：官方镜像 / 从源码部署（原版 OpenList）
+
+若希望使用 [OpenList 官方仓库](https://github.com/OpenListTeam/OpenList) 的镜像或从源码构建，可采用以下方式。
+
+**官方 Docker 镜像**（[OpenList 官方文档](https://openlist.team/guide/installation/docker)）：
+
+- 镜像：`openlistteam/openlist:latest` 或 `openlistteam/openlist:latest-lite`（生产建议用固定版本标签如 `openlistteam/openlist:v4.x.x`）。
+- 自建服务器上可直接运行：
+  ```bash
+  docker run -d --name openlist --restart always \
+    -p 5244:5244 \
+    -v /data/openlist:/opt/openlist/data \
+    openlistteam/openlist:latest
+  ```
+- 在 **Render** 上若要用官方镜像：New → Web Service → 从镜像部署 → Image URL 填 `docker.io/openlistteam/openlist:latest-lite`，端口 5244，挂载 Disk `/opt/openlist/data`。注意 v4.1.0+ 在部分 PaaS 上可能出现 data 目录权限问题，若遇此类错误可改用方式 B 中的 PaaS 镜像或自建 Docker。
+
+**从源码构建与运行**：
+
+- 官方提供 [一键脚本](https://openlist.team/guide/installation/script)、[手动安装](https://openlist.team/guide/installation/manual)、[从源码运行](https://openlist.team/guide/) 等说明。
+- 从源码：克隆 [OpenListTeam/OpenList](https://github.com/OpenListTeam/OpenList)，按仓库与 [官方文档](https://openlist.team/guide/) 的构建步骤编译并运行（或自行构建 Docker 镜像后按上段方式部署）。
+
+其他方式：1Panel 一键部署、[OpenList 官方 PaaS 文档](https://doc.openlist.team/guide/installation/paas) 等亦可。
 
 ### 2. 挂载网盘与开启 WebDAV
 
