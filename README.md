@@ -22,11 +22,21 @@
 
 ---
 
-## 一键部署到 Cloudflare（仅 Workers API）
+## 一键部署
+
+建议顺序：**① 先部署 OpenList（网盘）→ ② 再部署 Cloudflare（API + 前端）**，以便将 OpenList 地址填入 Workers 的 `OPENLIST_BASE_URL`。
+
+### ① 部署 OpenList 到 Render（网盘）
+
+[![Deploy to Render](https://render.com/images/deploy-to-render-button.svg)](https://render.com/deploy?repo=https://github.com/OpenListTeam/OpenList)
+
+点击后按提示登录 Render 即可部署 **OpenList**（挂载网盘、WebDAV、分享链接）。部署完成后记下 OpenList 地址，供下一步配置 Workers 使用。详见 [08-OpenList集成](docs/08-OpenList集成.md)。
+
+### ② 部署到 Cloudflare（Workers API + D1）
 
 [![Deploy to Cloudflare](https://deploy.workers.cloudflare.com/button)](https://deploy.workers.cloudflare.com/?url=https://github.com/jackadam1981/softcloud-archive/tree/main/workers)
 
-点击按钮后按提示登录 Cloudflare、填写信息即可部署 **Workers API + D1**（Cloudflare 会自动创建 D1 并绑定）。部署完成后在 Dashboard 中为 Worker 配置环境变量：`JWT_SECRET`、`ADMIN_TOKEN`、`OPENLIST_BASE_URL`。前端（Pages）和 OpenList 需另行部署，见 [07-Cloudflare部署](docs/07-Cloudflare部署.md)。
+点击后按提示登录 Cloudflare 即可部署 **Workers API + D1**。部署完成后在 Dashboard 中配置：`JWT_SECRET`、`ADMIN_TOKEN`、`OPENLIST_BASE_URL`（填上一步的 OpenList 地址）。前端（Pages）需另行部署，见 [07-Cloudflare部署](docs/07-Cloudflare部署.md)。
 
 ---
 
