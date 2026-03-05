@@ -8,12 +8,20 @@
 
 ### 1. 部署 OpenList
 
-推荐用 [Render](https://render.com) 免费容器部署：
+推荐用 [Render](https://render.com) 免费容器部署。
 
-1. 将 OpenList 项目推到 Git 仓库（或使用 OpenList 官方示例仓库）。
+**一键部署到 Render**（使用 [OpenList 官方仓库](https://github.com/OpenListTeam/OpenList)）：
+
+[![Deploy to Render](https://render.com/images/deploy-to-render-button.svg)](https://render.com/deploy?repo=https://github.com/OpenListTeam/OpenList)
+
+点击按钮后按提示登录 Render、确认或填写服务配置即可创建 OpenList 实例。若 OpenList 仓库提供 `render.yaml`，Render 会按配置创建服务；否则在 Render 控制台选择「Web Service」并连接该仓库，选择 Docker 或对应运行方式即可。
+
+**手动步骤**（与按钮等效）：
+
+1. 将 OpenList 项目推到 Git 仓库（或 Fork [OpenListTeam/OpenList](https://github.com/OpenListTeam/OpenList)）。
 2. Render 创建 Web Service，连接该仓库，选择 Docker 或对应运行方式。
 3. 绑定自定义域名（如 `pan.example.com`），为管理账号设置强密码。
-4. 连接 GitHub 后，每次 push 自动重新部署，实现与 SoftCloud 一致的一键部署体验。
+4. 连接 GitHub 后，每次 push 自动重新部署。
 
 其他方式：1Panel 一键部署、Docker 自建、官方脚本/手动安装亦可。
 

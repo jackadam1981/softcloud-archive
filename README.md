@@ -18,7 +18,15 @@
 
 - **前端**：Nuxt 3 + Vue 3，部署在 Cloudflare Pages，支持中英文和深浅色主题
 - **后端**：Cloudflare Workers + D1 数据库，提供 REST API
-- **存储**：用 OpenList 挂载网盘，通过 WebDAV 上传文件，用分享链接给用户下载。OpenList 仅在上传文件和生成分享链接时需要运行，推荐用 [Render](https://render.com) 免费容器部署
+- **存储**：用 [OpenList](https://github.com/OpenListTeam/OpenList) 挂载网盘，通过 WebDAV 上传文件，用分享链接给用户下载。OpenList 仅在上传文件和生成分享链接时需要运行，可 [一键部署到 Render](https://render.com/deploy?repo=https://github.com/OpenListTeam/OpenList)
+
+---
+
+## 一键部署到 Cloudflare（仅 Workers API）
+
+[![Deploy to Cloudflare](https://deploy.workers.cloudflare.com/button)](https://deploy.workers.cloudflare.com/?url=https://github.com/jackadam1981/softcloud-archive/tree/main/workers)
+
+点击按钮后按提示登录 Cloudflare、填写信息即可部署 **Workers API + D1**（Cloudflare 会自动创建 D1 并绑定）。部署完成后在 Dashboard 中为 Worker 配置环境变量：`JWT_SECRET`、`ADMIN_TOKEN`、`OPENLIST_BASE_URL`。前端（Pages）和 OpenList 需另行部署，见 [07-Cloudflare部署](docs/07-Cloudflare部署.md)。
 
 ---
 
@@ -51,7 +59,7 @@ npm install -g wrangler
 
 ### 2. 准备 D1 数据库
 
-去 Cloudflare 控制台创建一个 D1 数据库（比如叫 `softcloud-db`），把 `db/schema.sql` 里的内容执行一遍，拿到 Database ID 备用。
+去 Cloudflare 控制台创建一个 D1 数据库（比如叫 `softcloud-db`），拿到 Database ID 备用。表结构用 Drizzle 推送：`cd workers && npm run db:push`（需先配好 `drizzle.config.ts` 中的 D1 凭据）；或手动执行 `db/schema.sql`。
 
 ### 3. 配好 Workers
 
@@ -82,11 +90,12 @@ npm run dev          # 默认跑在 http://localhost:3000
 
 ## 怎么部署到线上？
 
-详细步骤在 [07-Cloudflare部署](docs/07-Cloudflare部署.md) 里。
+- **点按钮部署（推荐试玩）**：见上方「一键部署到 Cloudflare」按钮，仅部署 Workers + D1；Pages、OpenList 需另配。
+- **完整部署**：详细步骤在 [07-Cloudflare部署](docs/07-Cloudflare部署.md)。
 
 **手动部署**：Workers 用 `cd workers && npx wrangler deploy`，前端在 Cloudflare Pages 新建项目（根目录 `frontend`），OpenList 推荐用 Render 部署。
 
-**一键部署**：配置好 [GitHub Actions](.github/workflows/deploy.yml)（需 `CLOUDFLARE_API_TOKEN` 密钥）后，push 到 `main`/`master` 自动部署 Workers；Pages 和 Render 上的 OpenList 连接仓库后也会随 push 自动部署。
+**Git 自动部署**：配置好 [GitHub Actions](.github/workflows/deploy.yml)（需 `CLOUDFLARE_API_TOKEN` 密钥）后，push 到 `main`/`master` 自动部署 Workers；Pages 和 Render 上的 OpenList 连接仓库后也会随 push 自动部署。
 
 ---
 
