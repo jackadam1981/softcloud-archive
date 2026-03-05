@@ -18,7 +18,7 @@
 
 - **前端**：Nuxt 3 + Vue 3，部署在 Cloudflare Pages，支持中英文和深浅色主题
 - **后端**：Cloudflare Workers + D1 数据库，提供 REST API
-- **存储**：用 [OpenList](https://github.com/OpenListTeam/OpenList) 挂载网盘，通过 WebDAV 上传文件，用分享链接给用户下载。OpenList 仅在上传文件和生成分享链接时需要运行，可 [一键部署到 Render](https://render.com/deploy?repo=https://github.com/OpenListTeam/OpenList)
+- **存储**：用 [OpenList](https://github.com/OpenListTeam/OpenList) 挂载网盘，通过 WebDAV 上传文件，用分享链接给用户下载。OpenList 仅在上传文件和生成分享链接时需要运行，可 [一键部署到 Railway](https://railway.com/deploy/openlist)（无需绑卡）
 
 ---
 
@@ -26,16 +26,16 @@
 
 建议顺序：**① 先部署 OpenList（网盘）→ ② 再部署 Cloudflare（API + 前端）**，以便将 OpenList 地址填入 Workers 的 `OPENLIST_BASE_URL`。
 
-### ① 部署 OpenList 到 Render（网盘）
+### ① 部署 OpenList（网盘）
 
-本仓库根目录已包含 `render.yaml`，可直接一键部署（使用 PaaS 友好镜像 `ghcr.io/lsc0223/openlist-for-paas:main`，避免 v4.1.0+ 在 Render 上 data 目录权限问题）。步骤与 [linux.do 教程](https://linux.do/t/topic/1031701) 一致。
+**推荐 Railway**：一键部署、新用户 $5 试用且**无需绑卡**，比 Render 省事。
 
-- **一键部署**：点击下方按钮，或访问 `https://render.com/deploy?repo=https://github.com/jackadam1981/softcloud-archive`，按提示登录 Render 即可创建 OpenList 服务。
-- **手动部署**：Render → New → Web Service → 选择「从镜像部署」→ 镜像填 `ghcr.io/lsc0223/openlist-for-paas:main`，端口 5244，挂载磁盘 `/opt/openlist/data`。详见 [08-OpenList集成](docs/08-OpenList集成.md)。
+- **一键部署（Railway）**：点击下方按钮，或访问 [railway.com/deploy/openlist](https://railway.com/deploy/openlist)，按提示登录即可创建 OpenList。部署后在 Railway 日志中查看初始管理员密码。
+- **备选 Render**：若使用 Render，本仓库根目录含 [render.yaml](render.yaml)，访问 `https://render.com/deploy?repo=https://github.com/jackadam1981/softcloud-archive` 即可（Render 可能需绑卡）。详见 [08-OpenList集成](docs/08-OpenList集成.md)。
 
-[![Deploy to Render](https://render.com/images/deploy-to-render-button.svg)](https://render.com/deploy?repo=https://github.com/jackadam1981/softcloud-archive)
+[![Deploy on Railway](https://railway.com/button.svg)](https://railway.com/deploy/openlist)
 
-部署完成后记下 OpenList 地址，供下一步配置 Workers 的 `OPENLIST_BASE_URL`。详见 [08-OpenList集成](docs/08-OpenList集成.md)。
+部署完成后记下 OpenList 地址，供下一步配置 Workers 的 `OPENLIST_BASE_URL`。
 
 ### ② 部署到 Cloudflare（Workers API + D1）
 

@@ -1,6 +1,6 @@
-# OpenList 一键部署到 Render
+# OpenList 一键部署到 Render（备选）
 
-本目录提供在 [Render](https://render.com) 上一键部署 [OpenList](https://github.com/OpenListTeam/OpenList) 的 Blueprint 模板，步骤与 [linux.do 教程：render部署最新版openlist](https://linux.do/t/topic/1031701) 对齐。
+本目录提供在 [Render](https://render.com) 上一键部署 [OpenList](https://github.com/OpenListTeam/OpenList) 的 Blueprint 模板。**若不想绑卡，推荐优先使用 [Railway 一键部署](https://railway.com/deploy/openlist)**（新用户 $5 试用、无需信用卡）。步骤与 [linux.do 教程：render部署最新版openlist](https://linux.do/t/topic/1031701) 对齐。
 
 ## 为何使用社区镜像
 

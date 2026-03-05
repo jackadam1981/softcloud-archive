@@ -8,31 +8,21 @@
 
 ### 1. 部署 OpenList
 
-推荐用 [Render](https://render.com) 免费容器部署。
+**推荐 [Railway](https://railway.com)**：一键部署、新用户 $5 试用且**无需绑卡**；[OpenList 官方 Railway 模板](https://railway.com/deploy/openlist) 已配置好存储与启动。备选 [Render](https://render.com)（可能需绑卡）见下方方式 B。
 
-**说明**：OpenList 官方仓库 [OpenListTeam/OpenList](https://github.com/OpenListTeam/OpenList) 未包含 `render.yaml`，直接点「Deploy to Render」并指向该仓库时不会自动建服务，需在控制台选「从镜像部署」或使用下方模板。完整步骤与版本差异见 [linux.do：render部署最新版openlist教程](https://linux.do/t/topic/1031701)。
+#### 方式 A：一键部署到 Railway（推荐）
 
-**版本与镜像**：OpenList **v4.1.0 及以后**在 Render 上使用官方镜像时，可能出现「当前用户没有 /opt/openlist/data 的写和/或执行权限」。教程评论区推荐使用 PaaS 友好镜像 **`ghcr.io/lsc0223/openlist-for-paas:main`**，本模板已采用该镜像。v4.1.0 以前可用官方镜像并配置 `DB_*`、`UMASK=022` 等环境变量；v4.1.0+ 已移除 `PUID`/`PGID`，无需再设。
+1. 打开 [railway.com/deploy/openlist](https://railway.com/deploy/openlist)（或 README 中的「Deploy on Railway」按钮）。
+2. 按提示登录 Railway（可用 GitHub），确认部署。
+3. 部署完成后在 Railway 项目 → 该服务 → **Deploy Logs** 中查找初始管理员密码（形如 `Successfully created the admin user and the initial password is: xxx`），**请立即修改并妥善保存**。
+4. 在 Railway 服务设置中为服务生成公网域名，或绑定自定义域名，得到 OpenList 访问地址。
 
-#### 方式 A：一键部署（直接使用本仓库）
+#### 方式 B：部署到 Render（备选，可能需绑卡）
 
-本仓库**根目录**已包含 `render.yaml`，无需复制到新仓库：
+本仓库**根目录**已包含 `render.yaml`：
 
-1. 打开：`https://render.com/deploy?repo=https://github.com/jackadam1981/softcloud-archive`（或从 README 点击 Deploy to Render 按钮）。
-2. 按提示登录 Render 并确认配置，即可创建 OpenList 服务（镜像 `ghcr.io/lsc0223/openlist-for-paas:main`）。
-
-模板文件与说明见 [deploy/openlist-render/](../deploy/openlist-render/)。
-
-#### 方式 B：在 Render 控制台手动部署
-
-1. 登录 [Render Dashboard](https://dashboard.render.com/) → **New** → **Web Service**。
-2. 选择 **Deploy an existing image from a registry**（从镜像部署）。
-3. **Image URL** 填：`ghcr.io/lsc0223/openlist-for-paas:main`（推荐，避免 v4.1.0+ 权限问题）；或 `openlistteam/openlist:latest-lite`（v4.1.0+ 在 Render 上可能需自建镜像，见 [教程](https://linux.do/t/topic/1031701)）。
-4. **Instance Type** 选 Starter（免费档约 15 分钟无请求后休眠）。
-5. 添加 **Disk**：Mount Path 填 `/opt/openlist/data`，容量至少 1GB，用于持久化数据。
-6. **环境变量**：Render 会注入 `PORT`；若使用外置 Postgres/MySQL，按 [教程](https://linux.do/t/topic/1031701) 设置 `DB_TYPE`、`DB_HOST`、`DB_NAME`、`DB_USER`、`DB_PASS`、`DB_PORT`、`DB_SSL_MODE`、`DB_TABLE_PREFIX`、`UMASK=022`。
-7. 创建后访问 `https://你的服务名.onrender.com`，按首次向导设置管理员密码、挂载网盘等。
-8. 可选：绑定自定义域名（如 `pan.example.com`），在 Render 服务设置中添加 Custom Domain。
+1. 打开：`https://render.com/deploy?repo=https://github.com/jackadam1981/softcloud-archive`，按提示登录并确认配置即可创建 OpenList 服务（镜像 `ghcr.io/lsc0223/openlist-for-paas:main`）。
+2. 或手动：Render Dashboard → New → Web Service → 从镜像部署 → Image URL 填 `ghcr.io/lsc0223/openlist-for-paas:main`，端口 5244，挂载 Disk `/opt/openlist/data`（至少 1GB）。详见 [linux.do Render 教程](https://linux.do/t/topic/1031701)、[deploy/openlist-render/](../deploy/openlist-render/)。
 
 其他方式：1Panel 一键部署、Docker 自建、[OpenList 官方 PaaS 文档](https://doc.openlist.team/guide/installation/paas) 等亦可。
 
